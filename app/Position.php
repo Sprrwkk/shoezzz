@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Position extends Model
 {
     //
-    public function workers()
+    protected $primaryKey = 'position_id';
+
+    public function worker()
     {
         return $this->hasMany(Worker::class);
     }
