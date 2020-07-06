@@ -23,6 +23,7 @@ class CreateWorkersTable extends Migration
                 ->references('position_id')
                 ->on('positions')
                 ->onDelete('cascade');
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }
