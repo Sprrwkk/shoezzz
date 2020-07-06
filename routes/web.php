@@ -17,5 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('worker/{id}/delete', 'WorkerController@removeWorkerById');
+Route::get('workers/new/', 'WorkerController@createWorker');
 Route::get('/positions', 'PositionController@getPositions');
 Route::get('/workers', 'WorkerController@getWorkers');
+Route::get('/workers/{worker_id}', 'WorkerController@getWorkerById');
+Route::get('workers/{worker_id}/edit', 'WorkerController@editWorkerInformation');
+
