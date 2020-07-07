@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 class WorkerController extends Controller
 {
-    //
-    public function getWorkers()
-    {
+
+    public function getWorkers() {
         $workers = Worker::with('position')->get();
 
         return response($workers, 200);
     }
+
 
 
     public function getWorkerById($worker_id) {
@@ -23,6 +23,7 @@ class WorkerController extends Controller
 
         return response($worker, 200);
     }
+
 
 
     public function createWorker(Request $request) {
@@ -34,22 +35,35 @@ class WorkerController extends Controller
         $worker -> birthday = $request -> birthday;
         $worker -> position = $request -> position;
         $worker -> active = $request -> active;
-        $worker -> avatar_image= $request -> avatar_image;
 
         $worker -> save();
 
         return response($worker, 200);
+
     }
 
 
-    public function editWorkerInformation($worker_id, Request $request)
 
-    {
+    public function addAvatar($worker_id, Request $request) {
+
         $worker = Worker::findOrFail($worker_id);
-        if (!$worker) {
-            abort(404);
-        }
 
+        $file = $request->file('avatar_image');
+        $file->store('files');
+
+        $worker -> avatar_image = $file->getClientOriginalName();
+
+        $worker -> save();
+
+        return response($worker, 200);
+
+    }
+
+
+
+    public function editWorker($worker_id, Request $request) {
+
+        $worker = Worker::findOrFail($worker_id);
 
         $input = $request->all();
 
@@ -63,8 +77,10 @@ class WorkerController extends Controller
     }
 
 
-    public function removeWorkerById($id) {
-        $worker = Worker::findOrFail($id);
+
+    public function removeWorkerById($worker_id) {
+
+        $worker = Worker::findOrFail($worker_id);
 
         $worker->delete();
 
