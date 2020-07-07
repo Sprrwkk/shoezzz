@@ -26,6 +26,13 @@ Route::prefix('csrf')->group(function(){
 
 
 
+Route::prefix('categories')->group(function() {
+    Route::get('', 'CategoryController@getCategories');
+});
+
+
+
+
 Route::prefix('workers')->group(function () {
     Route::get('', 'WorkerController@getWorkers');
     Route::get('/{worker_id}', 'WorkerController@getWorkerById');
@@ -37,9 +44,12 @@ Route::prefix('workers')->group(function () {
 });
 
 
-
 Route::prefix('positions')->group(function () {
     Route::get('', 'PositionController@getPositions');
+    Route::get('{position_id}', 'PositionController@getPositionById');
+    Route::post('/new', 'PositionController@createPosition');
+    Route::put('/{position_id}/edit', 'PositionController@editPosition');
+    Route::delete('/{position_id}/delete', 'PositionController@removePositionById');
 });
 
 
