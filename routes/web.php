@@ -13,15 +13,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-Route::get('worker/{id}/delete', 'WorkerController@removeWorkerById');
-Route::get('workers/new/', 'WorkerController@createWorker');
-Route::get('/positions', 'PositionController@getPositions');
-Route::get('/workers', 'WorkerController@getWorkers');
-Route::get('/workers/{worker_id}', 'WorkerController@getWorkerById');
-Route::get('workers/{worker_id}/edit', 'WorkerController@editWorkerInformation');
+
+Route::prefix('csrf')->group(function(){
+    Route::get('', 'HomeController@csrf');
+});
+
+
+
+Route::prefix('workers')->group(function () {
+    Route::get('', 'WorkerController@getWorkers');
+    Route::get('/{worker_id}', 'WorkerController@getWorkerById');
+    Route::post('/new', 'WorkerController@createWorker');
+    Route::post('/{worker_id}/avatar', 'WorkerController@addAvatar');
+    Route::put('/{worker_id}/edit', 'WorkerController@editWorker');
+    Route::delete('/{worker_id}/delete', 'WorkerController@removeWorkerById');
+
+});
+
+
+
+Route::prefix('positions')->group(function () {
+    Route::get('', 'PositionController@getPositions');
+});
+
+
+
+
+Route::get('/csrf', 'WorkerController@index');
+
+
+
+
+
+
 
