@@ -36,7 +36,6 @@ Route::prefix('categories')->group(function() {
 
 
 
-
 Route::prefix('workers')->group(function () {
     Route::get('', 'WorkerController@getWorkers');
     Route::get('/{worker_id}', 'WorkerController@getWorkerById');
@@ -48,6 +47,7 @@ Route::prefix('workers')->group(function () {
 });
 
 
+
 Route::prefix('positions')->group(function () {
     Route::get('', 'PositionController@getPositions');
     Route::get('{position_id}', 'PositionController@getPositionById');
@@ -56,10 +56,6 @@ Route::prefix('positions')->group(function () {
     Route::delete('/{position_id}/delete', 'PositionController@removePositionById');
 });
 
-
-
-
-Route::get('/csrf', 'WorkerController@index');
 
 
 
