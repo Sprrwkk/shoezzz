@@ -20,14 +20,18 @@ Route::get('/', function () {
 
 
 
-Route::prefix('csrf')->group(function(){
-    Route::get('', 'HomeController@csrf');
+Route::prefix('index')->group(function(){
+    Route::get('', 'HomeController@index');
 });
 
 
 
 Route::prefix('categories')->group(function() {
     Route::get('', 'CategoryController@getCategories');
+    Route::get('/{category_id}', 'CategoryController@getCategoryById');
+    Route::post('/new', 'CategoryController@createCategory');
+    Route::put('/{category_id}/edit', 'CategoryController@editCategory');
+    Route::delete('/{category_id}/delete', 'CategoryController@removeCategory');
 });
 
 
