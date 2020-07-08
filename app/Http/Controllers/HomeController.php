@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     //
 
-    public function csrf() {
+    public function index() {
 
         return csrf_token();
 
