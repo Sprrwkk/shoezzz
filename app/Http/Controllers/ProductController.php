@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     //
     public function showProducts() {
-        $products = Product::with('category')->get();
+        $products = Product::with('category', 'brand')->get();
 
         return response($products, 200);
     }
