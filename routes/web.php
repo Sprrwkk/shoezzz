@@ -58,6 +58,10 @@ Route::prefix('positions')->group(function () {
 
 
 
+Route::prefix('products')->group(function() {
+    Route::get('', 'ProductController@showProducts');
+});
+
 
 
 
