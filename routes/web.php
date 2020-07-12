@@ -60,6 +60,10 @@ Route::prefix('positions')->group(function () {
 
 Route::prefix('products')->group(function() {
     Route::get('', 'ProductController@showProducts');
+    Route::get('/{product_id}', 'ProductController@showProductById');
+    Route::post('/new', 'ProductController@createProduct');
+    Route::put('/{product_id}/edit', 'ProductController@editProduct');
+    Route::delete('/{product_id}/delete', 'ProductController@removeProductById');
 });
 
 
