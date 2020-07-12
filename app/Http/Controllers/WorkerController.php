@@ -67,10 +67,10 @@ class WorkerController extends Controller
 
         $input = $request->all();
 
-        $key = key($input);
-        $value = $input[$key];
+        foreach ($input as $key=>$value) {
+            $worker -> $key = $input[$key];
+        }
 
-        $worker[$key] = $value;
         $worker -> save();
 
         return response($worker, 200);
