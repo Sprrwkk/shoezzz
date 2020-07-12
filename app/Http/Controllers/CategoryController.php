@@ -43,8 +43,14 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($category_id);
 
+        $input = $request->all();
 
-        $category->category_name = $request->category_name;
+        foreach ($input as $key=>$value) {
+            $category->$key = $input[$key];
+        }
+
+
+//        $category->category_name = $request->category_name;
 
         $category->save();
 
