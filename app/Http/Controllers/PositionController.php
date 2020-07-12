@@ -51,10 +51,9 @@ class PositionController extends Controller
 
         $input = $request -> all();
 
-        $key = key($input);
-        $value = $input[$key];
-
-        $position[$key] = $value;
+        foreach ($input as $key => $value) {
+            $position -> $key = $input[$key];
+        }
 
         $position -> save();
 
