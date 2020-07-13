@@ -68,6 +68,16 @@ Route::prefix('products')->group(function() {
 
 
 
+Route::prefix('brands')->group(function() {
+    Route::get('', 'BrandController@showBrands');
+    Route::get('/{brand_id}', 'BrandController@showBrandById');
+    Route::post('/new', 'BrandController@createBrand');
+    Route::put('/{brand_id}/edit', 'BrandController@editBrand');
+    Route::delete('/{brand_id}/delete', 'BrandController@removeBrandById');
+});
+
+
+
 
 
 
